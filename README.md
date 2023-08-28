@@ -61,7 +61,7 @@ def handle_bard_command(message):
 # Start the bot
 bot.polling()</pre>
 
-[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bard+do+u+like+python?)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bard+do+u+like+python?)](https://github.com/aleksfolt)
 
 Or aiogram
 
