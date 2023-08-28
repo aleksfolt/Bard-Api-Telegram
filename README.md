@@ -9,7 +9,9 @@ i refer to this repository [Bard Api](https://github.com/dsdanielpark/Bard-API) 
 
 # Install
 
-<pre>$ pip install bardapi</pre> or <pre>$ pip install git+https://github.com/dsdanielpark/Bard-API.git</pre>
+<pre>$ pip install bardapi</pre> 
+or 
+<pre>$ pip install git+https://github.com/dsdanielpark/Bard-API.git</pre>
 
 # Authentication
 
@@ -32,7 +34,7 @@ token = 'xxxxxxx'
 bard = Bard(token=token)
 print(answer["content"])</pre>
 
-Telegram Usage
+Telebot
 
 <pre>
 import telebot
@@ -59,7 +61,9 @@ def handle_bard_command(message):
 # Start the bot
 bot.polling()</pre>
 
-Or aiogram Usage
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bard+do+u+like+python?)](https://git.io/typing-svg)
+
+Or aiogram
 
 <pre>
 import logging
@@ -95,5 +99,46 @@ if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)</pre>
 
 
-# Bard What is Image
+# Bard, What is Image?
 
+
+Simple Usage
+
+<pre>from bardapi import Bard
+
+bard = Bard(token='xxxxxxx')
+image = open('image.jpg', 'rb').read() # (jpeg, png, webp) are supported.
+bard_answer = bard.ask_about_image('What is in the image?', image)
+print(bard_answer['content'])</pre>
+
+
+TeleBot
+
+<pre>@bot.message_handler(commands=['whatisimage'])
+def what_is_image(message):
+    if message.reply_to_message and message.reply_to_message.photo:
+        file_id = message.reply_to_message.photo[-1].file_id
+        file_info = bot.get_file(file_id)
+        image = bot.download_file(file_info.file_path)
+        bard_answer = bard.ask_about_image('What is in the image?', image)
+        bot.reply_to(message, bard_answer['content'])
+    else:
+        bot.reply_to(message, "Please reply to my post with an image first!")
+</pre>
+
+Aiogram
+
+<pre>@dp.message_handler(commands=['whatisimage'])
+async def what_is_image(message: types.Message, state: FSMContext):
+    if message.reply_to_message and message.reply_to_message.photo:
+        file_id = message.reply_to_message.photo[-1].file_id
+        file_info = await bot.get_file(file_id)
+        image = await bot.download_file(file_info.file_path)
+        bard_answer = bard.ask_about_image('What is in the image?', image)
+        await message.reply_text(bard_answer['content'])
+    else:
+        await message.reply_text("Please reply to my post with an image first!")</pre>
+
+
+
+Thanks to everyone who watched to the end. Remember that I am not responsible for this library and the actions you perform
