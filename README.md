@@ -16,7 +16,7 @@ or
 # Authentication
 
 1. Visit https://bard.google.com/
-2. Close all tabs
+2. Close all tabs besides https://bard.google.com/
 3. Open F12 Console
 4. Session: Application → Cookies → Copy the value of <code>__Secure-1PSID</code> cookie.
 
