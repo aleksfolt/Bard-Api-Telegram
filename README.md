@@ -37,16 +37,6 @@ print(answer["content"])</pre>
 Telebot
 
 <pre>
-import telebot
-from bardapi import Bard
-
-# Replace 'xxxxxxx' with your token
-token = 'xxxxxxx'
-bot = telebot.TeleBot(token)
-
-# Initialize the Bard object
-bard = Bard(token=token)
-
 @bot.message_handler(commands=['bard'])
 def handle_bard_command(message):
     # Get the user's query
@@ -57,32 +47,13 @@ def handle_bard_command(message):
     
     # Send the response to the user
     bot.send_message(message.chat.id, response["content"])
-
-# Start the bot
-bot.polling()</pre>
+</pre>
 
 [![Typing SVG](https://readme-typing-svg.herokuapp.com?color=%2336BCF7&lines=Bard+do+u+like+python?)](https://github.com/aleksfolt)
 
 Or aiogram
 
 <pre>
-import logging
-from aiogram import Bot, Dispatcher, types
-from aiogram.contrib.middlewares.logging import LoggingMiddleware
-from bardapi import Bard
-
-# Replace 'xxxxxxx' with your token
-token = 'xxxxxxx'
-
-# Initialize the bot and dispatcher
-bot = Bot(token=token)
-dp = Dispatcher(bot)
-bard = Bard(token=token)
-
-# Enable logging
-logging.basicConfig(level=logging.INFO)
-dp.middleware.setup(LoggingMiddleware())
-
 @dp.message_handler(commands=['bard'])
 async def handle_bard_command(message: types.Message):
     # Get the user's query
@@ -93,10 +64,7 @@ async def handle_bard_command(message: types.Message):
     
     # Send the response to the user
     await message.answer(response["content"])
-
-if __name__ == '__main__':
-    from aiogram import executor
-    executor.start_polling(dp, skip_updates=True)</pre>
+</pre>
 
 
 # Bard, What is Image?
